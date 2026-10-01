@@ -62,4 +62,12 @@ async updateLettreMotivation(userId: string, lettreMotivationUrl: string): Promi
   }
   return user;
 }
+
+async findMe(userId: string) {
+  const user = await this.userModel.findById(userId);
+  if (!user) {
+    throw new NotFoundException('Utilisateur introuvable');
+  }
+  return user;
+}
 }

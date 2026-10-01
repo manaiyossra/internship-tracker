@@ -11,7 +11,7 @@ export class Candidature {
   @Prop({ type: Types.ObjectId, ref: 'Offre', required: true })
   offre: Types.ObjectId;
 
-  @Prop({ required: true, enum: ['envoyee', 'entretien', 'acceptee', 'refusee'], default: 'envoyee' })
+  @Prop({ required: true, enum: ['envoyée', 'entretien', 'acceptée', 'refusée'], default: 'envoyée' })
   statut: string;
 
   @Prop()

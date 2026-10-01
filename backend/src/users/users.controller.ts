@@ -84,7 +84,11 @@ uploadLettreMotivation(@Req() req: any, @UploadedFile() file: Express.Multer.Fil
   findAll() {
     return this.usersService.findAll();
   }
-
+  @UseGuards(JwtAuthGuard)
+@Get('me')
+getMe(@Req() req: any) {
+  return this.usersService.findMe(req.user.userId);
+}
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);

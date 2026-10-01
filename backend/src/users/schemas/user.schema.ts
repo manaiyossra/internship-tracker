@@ -31,3 +31,10 @@ export class User {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+UserSchema.set('toJSON', {
+  transform: (_doc, ret: any) => {
+    delete ret.password;
+    return ret;
+  },
+});
