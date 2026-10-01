@@ -3,6 +3,8 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import OffresListPage from './pages/OffresListPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import OffreDetailPage from './pages/OffreDetailPage';
+import MesCandidaturesPage from './pages/MesCandidaturesPage';
 
 function App() {
   return (
@@ -17,6 +19,22 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+  path="/offres/:id"
+  element={
+    <ProtectedRoute>
+      <OffreDetailPage />
+    </ProtectedRoute>
+  }
+/>
+      <Route
+  path="/mes-candidatures"
+  element={
+    <ProtectedRoute>
+      <MesCandidaturesPage />
+    </ProtectedRoute>
+  }
+/>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
