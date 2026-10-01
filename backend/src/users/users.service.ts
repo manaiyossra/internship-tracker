@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { User, UserDocument } from './schemas/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateMeDto } from './dto/update-me.dto';
 
 @Injectable()
 export class UsersService {
@@ -32,42 +33,50 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-  return this.userModel.find().exec();
-}
-
-async findOne(id: string): Promise<UserDocument | null> {
-  return this.userModel.findById(id).exec();
-}
-
-async update(id: string, updateUserDto: UpdateUserDto): Promise<UserDocument | null> {
-  return this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true }).exec();
-}
-
-async remove(id: string): Promise<UserDocument | null> {
-  return this.userModel.findByIdAndDelete(id).exec();
-}
-
-async updateCv(userId: string, cvUrl: string): Promise<UserDocument> {
-  const user = await this.userModel.findByIdAndUpdate(userId, { cvUrl }, { new: true }).exec();
-  if (!user) {
-    throw new NotFoundException('Utilisateur introuvable');
+    return this.userModel.find().exec();
   }
-  return user;
-}
 
-async updateLettreMotivation(userId: string, lettreMotivationUrl: string): Promise<UserDocument> {
-  const user = await this.userModel.findByIdAndUpdate(userId, { lettreMotivationUrl }, { new: true }).exec();
-  if (!user) {
-    throw new NotFoundException('Utilisateur introuvable');
+  async findOne(id: string): Promise<UserDocument | null> {
+    return this.userModel.findById(id).exec();
   }
-  return user;
-}
 
-async findMe(userId: string) {
-  const user = await this.userModel.findById(userId);
-  if (!user) {
-    throw new NotFoundException('Utilisateur introuvable');
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<UserDocument | null> {
+    return this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true }).exec();
   }
-  return user;
-}
+
+  async remove(id: string): Promise<UserDocument | null> {
+    return this.userModel.findByIdAndDelete(id).exec();
+  }
+
+  async updateCv(userId: string, cvUrl: string): Promise<UserDocument> {
+    const user = await this.userModel.findByIdAndUpdate(userId, { cvUrl }, { new: true }).exec();
+    if (!user) {
+      throw new NotFoundException('Utilisateur introuvable');
+    }
+    return user;
+  }
+
+  async updateLettreMotivation(userId: string, lettreMotivationUrl: string): Promise<UserDocument> {
+    const user = await this.userModel.findByIdAndUpdate(userId, { lettreMotivationUrl }, { new: true }).exec();
+    if (!user) {
+      throw new NotFoundException('Utilisateur introuvable');
+    }
+    return user;
+  }
+
+  async findMe(userId: string) {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new NotFoundException('Utilisateur introuvable');
+    }
+    return user;
+  }
+
+  async updateMe(userId: string, updateMeDto: UpdateMeDto): Promise<UserDocument> {
+    const user = await this.userModel.findByIdAndUpdate(userId, updateMeDto, { new: true }).exec();
+    if (!user) {
+      throw new NotFoundException('Utilisateur introuvable');
+    }
+    return user;
+  }
 }
