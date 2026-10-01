@@ -1,4 +1,4 @@
-import { Injectable, ConflictException } from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
@@ -45,5 +45,21 @@ async update(id: string, updateUserDto: UpdateUserDto): Promise<UserDocument | n
 
 async remove(id: string): Promise<UserDocument | null> {
   return this.userModel.findByIdAndDelete(id).exec();
+}
+
+async updateCv(userId: string, cvUrl: string): Promise<UserDocument> {
+  const user = await this.userModel.findByIdAndUpdate(userId, { cvUrl }, { new: true }).exec();
+  if (!user) {
+    throw new NotFoundException('Utilisateur introuvable');
+  }
+  return user;
+}
+
+async updateLettreMotivation(userId: string, lettreMotivationUrl: string): Promise<UserDocument> {
+  const user = await this.userModel.findByIdAndUpdate(userId, { lettreMotivationUrl }, { new: true }).exec();
+  if (!user) {
+    throw new NotFoundException('Utilisateur introuvable');
+  }
+  return user;
 }
 }

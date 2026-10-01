@@ -5,12 +5,14 @@ import { UpdateOffreDto } from './dto/update-offre.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 
 @Controller('offres')
 export class OffresController {
   constructor(private readonly offresService: OffresService) {}
 
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
   @Post()
@@ -28,6 +30,7 @@ findAll(@Query() query: FindOffresDto) {
     return this.offresService.findOne(id);
   }
 
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
   @Patch(':id')
@@ -35,6 +38,7 @@ findAll(@Query() query: FindOffresDto) {
     return this.offresService.update(id, updateOffreDto);
   }
 
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
   @Delete(':id')

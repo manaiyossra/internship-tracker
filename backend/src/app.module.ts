@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { OffresModule } from './offres/offres.module';
 import { CandidaturesModule } from './candidatures/candidatures.module';
+import { StatsModule } from './stats/stats.module';
 
 @Module({
   imports: [
@@ -18,10 +19,11 @@ import { CandidaturesModule } from './candidatures/candidatures.module';
         uri: configService.get<string>('MONGODB_URI'),
       }),
     }),
-    UsersModule,
+        UsersModule,
     AuthModule,
     OffresModule,
     CandidaturesModule,
+    StatsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
