@@ -16,6 +16,7 @@ export default function Navbar() {
         {user?.role === 'candidat' && (
           <Link to="/mes-candidatures" className={linkClass('/mes-candidatures')}>Mes candidatures</Link>
         )}
+        <Link to="/profil" className={linkClass('/profil')}>Profil</Link>
       </div>
       <div className="flex items-center gap-4">
         <span className="text-gray-700 text-sm">

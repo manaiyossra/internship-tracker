@@ -5,6 +5,7 @@ import OffresListPage from './pages/OffresListPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import OffreDetailPage from './pages/OffreDetailPage';
 import MesCandidaturesPage from './pages/MesCandidaturesPage';
+import ProfilPage from './pages/ProfilPage';
 
 function App() {
   return (
@@ -32,6 +33,14 @@ function App() {
   element={
     <ProtectedRoute>
       <MesCandidaturesPage />
+    </ProtectedRoute>
+  }
+/>
+      <Route
+  path="/profil"
+  element={
+    <ProtectedRoute>
+      <ProfilPage />
     </ProtectedRoute>
   }
 />

@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { isAxiosError } from 'axios';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -14,11 +15,16 @@ export default function LoginPage() {
     e.preventDefault();
     setError(null);
     setIsSubmitting(true);
-    try {
+        try {
       await login(email, password);
       navigate('/');
-    } catch {
-      setError('Email ou mot de passe incorrect');
+    } catch (err) {
+      if (isAxiosError(err) && err.response?.data?.message) {
+        const msg = err.response.data.message;
+        setError(Array.isArray(msg) ? msg.join(', ') : msg);
+      } else {
+        setError('Une erreur est survenue. Vérifie que le serveur est accessible.');
+      }
     } finally {
       setIsSubmitting(false);
     }

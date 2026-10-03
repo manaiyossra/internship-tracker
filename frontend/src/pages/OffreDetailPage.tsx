@@ -20,7 +20,7 @@ export default function OffreDetailPage() {
     getOffre(id).then(setOffre).finally(() => setIsLoading(false));
   }, [id]);
 
-  async function handlePostuler() {
+    async function handlePostuler() {
     if (!id) return;
     setIsApplying(true);
     setMessage(null);
@@ -28,8 +28,9 @@ export default function OffreDetailPage() {
       await postuler(id);
       setMessage({ type: 'success', text: 'Candidature envoyée avec succès !' });
     } catch (err) {
-      if (isAxiosError(err) && err.response?.status === 409) {
-        setMessage({ type: 'error', text: 'Vous avez déjà postulé à cette offre.' });
+      if (isAxiosError(err) && err.response?.data?.message) {
+        const msg = err.response.data.message;
+        setMessage({ type: 'error', text: Array.isArray(msg) ? msg.join(', ') : msg });
       } else {
         setMessage({ type: 'error', text: 'Une erreur est survenue, réessaie plus tard.' });
       }
