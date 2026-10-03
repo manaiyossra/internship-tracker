@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
-import { BadRequestException, ConflictException } from '@nestjs/common';
+import { BadRequestException, ConflictException, NotFoundException } from '@nestjs/common';
 import { CandidaturesService } from './candidatures.service';
 import { Candidature } from './schemas/candidature.schema';
 import { OffresService } from '../offres/offres.service';
@@ -13,22 +13,16 @@ describe('CandidaturesService', () => {
   let usersService: any;
 
   beforeEach(async () => {
-    offresService = {
-      findOne: vi.fn(),
-    };
-    usersService = {
-      findOne: vi.fn(),
-    };
+    offresService = { findOne: vi.fn() };
+    usersService = { findOne: vi.fn() };
 
-    // candidatureModel doit marcher à la fois comme objet (findOne)
-    // et comme constructeur (new candidatureModel(...).save()).
-    // vi.fn() PEUT être utilisé avec `new`, donc on lui attache
-    // findOne comme propriété en plus de son comportement de constructeur.
     candidatureModel = vi.fn().mockImplementation(function (this: any, data: any) {
       Object.assign(this, data);
       this.save = vi.fn().mockResolvedValue(data);
     });
     candidatureModel.findOne = vi.fn();
+    candidatureModel.find = vi.fn();
+    candidatureModel.findByIdAndUpdate = vi.fn();
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -69,5 +63,34 @@ describe('CandidaturesService', () => {
     const result = await service.create('user1', { offre: 'offre1' } as any);
 
     expect(result).toBeDefined();
+  });
+
+  it('devrait retourner les candidatures de l\'utilisateur', async () => {
+    const fakeCandidatures = [{ _id: 'c1' }];
+    candidatureModel.find.mockReturnValue({
+      populate: vi.fn().mockReturnThis(),
+      exec: vi.fn().mockResolvedValue(fakeCandidatures),
+    });
+
+    const result = await service.findMine('user1');
+
+    expect(candidatureModel.find).toHaveBeenCalledWith({ utilisateur: 'user1' });
+    expect(result).toEqual(fakeCandidatures);
+  });
+
+  it('devrait mettre à jour le statut si la candidature existe', async () => {
+    candidatureModel.findByIdAndUpdate.mockReturnValue({
+      exec: vi.fn().mockResolvedValue({ _id: 'c1', statut: 'entretien' }),
+    });
+
+    const result = await service.updateStatut('c1', 'entretien');
+
+    expect(result).toEqual({ _id: 'c1', statut: 'entretien' });
+  });
+
+  it('devrait rejeter avec NotFoundException si la candidature n\'existe pas (updateStatut)', async () => {
+    candidatureModel.findByIdAndUpdate.mockReturnValue({ exec: vi.fn().mockResolvedValue(null) });
+
+    await expect(service.updateStatut('id-inexistant', 'entretien')).rejects.toThrow(NotFoundException);
   });
 });
