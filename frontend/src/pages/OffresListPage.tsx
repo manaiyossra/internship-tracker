@@ -46,11 +46,12 @@ export default function OffresListPage() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <div className="px-8">
+      <main className="px-8">
         <h1 className="text-2xl font-bold mb-6">Offres de stage</h1>
 
         <form onSubmit={handleFilterSubmit} className="flex flex-wrap gap-4 mb-6 bg-white p-4 rounded-lg shadow-sm">
           <select
+            aria-label="Filtrer par type de stage"
             value={type}
             onChange={(e) => { setType(e.target.value as OffreType | ''); setPage(1); }}
             className="border border-gray-300 rounded px-3 py-2"
@@ -62,6 +63,7 @@ export default function OffresListPage() {
           </select>
 
           <select
+            aria-label="Filtrer par durée"
             value={duree}
             onChange={(e) => { setDuree(e.target.value); setPage(1); }}
             className="border border-gray-300 rounded px-3 py-2"
@@ -124,7 +126,7 @@ export default function OffresListPage() {
             </button>
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

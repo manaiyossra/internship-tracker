@@ -1,4 +1,5 @@
 import apiClient from './client';
+import type { Offre, OffreType } from '../types';
 import type { OffresResponse, OffresFilters } from '../types';
 
 export async function getOffres(filters: OffresFilters = {}): Promise<OffresResponse> {
