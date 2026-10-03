@@ -97,31 +97,33 @@ export default function ProfilPage() {
           </form>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 max-w-xl mx-auto">
-          <h2 className="text-lg font-semibold mb-4">Documents</h2>
+        {user?.role === 'candidat' && (
+          <div className="bg-white rounded-lg shadow-sm p-6 max-w-xl mx-auto">
+            <h2 className="text-lg font-semibold mb-4">Documents</h2>
 
-          <div className="mb-4">
-            <p className="text-sm font-medium text-gray-700 mb-1">CV</p>
-            {user?.cvUrl && (
-              <a href={`${API_BASE_URL}${user.cvUrl}`} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-sm block mb-2">
-                Voir le fichier actuel
-              </a>
-            )}
-            <input type="file" accept=".pdf,.doc,.docx" onChange={handleCvChange} disabled={isUploadingCv} className={fileInputClass} />
-            {isUploadingCv && <p className="text-sm text-gray-500 mt-1">Envoi en cours...</p>}
-          </div>
+            <div className="mb-4">
+              <p className="text-sm font-medium text-gray-700 mb-1">CV</p>
+              {user?.cvUrl && (
+                <a href={`${API_BASE_URL}${user.cvUrl}`} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-sm block mb-2">
+                  Voir le fichier actuel
+                </a>
+              )}
+              <input type="file" accept=".pdf,.doc,.docx" onChange={handleCvChange} disabled={isUploadingCv} className={fileInputClass} />
+              {isUploadingCv && <p className="text-sm text-gray-500 mt-1">Envoi en cours...</p>}
+            </div>
 
-          <div>
-            <p className="text-sm font-medium text-gray-700 mb-1">Lettre de motivation</p>
-            {user?.lettreMotivationUrl && (
-              <a href={`${API_BASE_URL}${user.lettreMotivationUrl}`} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-sm block mb-2">
-                Voir le fichier actuel
-              </a>
-            )}
-            <input type="file" accept=".pdf,.doc,.docx" onChange={handleLettreChange} disabled={isUploadingLettre} className={fileInputClass} />
-            {isUploadingLettre && <p className="text-sm text-gray-500 mt-1">Envoi en cours...</p>}
+            <div>
+              <p className="text-sm font-medium text-gray-700 mb-1">Lettre de motivation</p>
+              {user?.lettreMotivationUrl && (
+                <a href={`${API_BASE_URL}${user.lettreMotivationUrl}`} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-sm block mb-2">
+                  Voir le fichier actuel
+                </a>
+              )}
+              <input type="file" accept=".pdf,.doc,.docx" onChange={handleLettreChange} disabled={isUploadingLettre} className={fileInputClass} />
+              {isUploadingLettre && <p className="text-sm text-gray-500 mt-1">Envoi en cours...</p>}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -17,6 +17,12 @@ export default function Navbar() {
           <Link to="/mes-candidatures" className={linkClass('/mes-candidatures')}>Mes candidatures</Link>
         )}
         <Link to="/profil" className={linkClass('/profil')}>Profil</Link>
+        {user?.role === 'admin' && (
+          <>
+            <Link to="/admin/offres" className={linkClass('/admin/offres')}>Gérer les offres</Link>
+            <Link to="/admin/stats" className={linkClass('/admin/stats')}>Stats</Link>
+          </>
+        )}
       </div>
       <div className="flex items-center gap-4">
         <span className="text-gray-700 text-sm">

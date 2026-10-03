@@ -6,6 +6,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import OffreDetailPage from './pages/OffreDetailPage';
 import MesCandidaturesPage from './pages/MesCandidaturesPage';
 import ProfilPage from './pages/ProfilPage';
+import AdminStatsPage from './pages/AdminStatsPage';
+import AdminOffresPage from './pages/AdminOffresPage';
 
 function App() {
   return (
@@ -41,6 +43,22 @@ function App() {
   element={
     <ProtectedRoute>
       <ProfilPage />
+    </ProtectedRoute>
+  }
+/>
+      <Route
+  path="/admin/stats"
+  element={
+    <ProtectedRoute requireAdmin>
+      <AdminStatsPage />
+    </ProtectedRoute>
+  }
+/>
+      <Route
+  path="/admin/offres"
+  element={
+    <ProtectedRoute requireAdmin>
+      <AdminOffresPage />
     </ProtectedRoute>
   }
 />
