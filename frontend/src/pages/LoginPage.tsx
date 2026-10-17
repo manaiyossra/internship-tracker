@@ -15,7 +15,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError(null);
     setIsSubmitting(true);
-        try {
+    try {
       await login(email, password);
       navigate('/');
     } catch (err) {
@@ -41,8 +41,9 @@ export default function LoginPage() {
           </div>
         )}
 
-        <label className="block mb-2 text-sm font-medium text-gray-700">Email</label>
+        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">Email</label>
         <input
+          id="email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -50,8 +51,9 @@ export default function LoginPage() {
           className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
-        <label className="block mb-2 text-sm font-medium text-gray-700">Mot de passe</label>
+        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700">Mot de passe</label>
         <input
+          id="password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
