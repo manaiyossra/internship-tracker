@@ -1,6 +1,6 @@
 # Internship Tracker
 
-A full-stack application for managing internship applications, built as a flagship project during a final-year internship (PFE) search. A candidate browses listings, applies, and tracks the status of their applications; an admin manages the listings and views a statistics dashboard.
+A full-stack application for managing internship applications. A candidate browses listings, applies, and tracks the status of their applications; an admin manages the listings and views a statistics dashboard.
 
 ## Table of contents
 
@@ -154,4 +154,4 @@ MIT — see the [LICENSE](LICENSE) file.
 
 ---
 
-Built by [Yossra Manai](https://github.com/manaiyossra) as part of a final-year internship (PFE) search.
+Built by [Yossra Manai](https://github.com/manaiyossra).
