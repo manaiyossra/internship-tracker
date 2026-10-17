@@ -14,7 +14,7 @@ export default function RegisterPage() {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-   async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
     setIsSubmitting(true);
@@ -43,24 +43,24 @@ export default function RegisterPage() {
           </div>
         )}
 
-        <label className="block mb-2 text-sm font-medium text-gray-700">Prénom</label>
-        <input type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} required
+        <label htmlFor="prenom" className="block mb-2 text-sm font-medium text-gray-700">Prénom</label>
+        <input id="prenom" type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)} required
           className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-        <label className="block mb-2 text-sm font-medium text-gray-700">Nom</label>
-        <input type="text" value={nom} onChange={(e) => setNom(e.target.value)} required
+        <label htmlFor="nom" className="block mb-2 text-sm font-medium text-gray-700">Nom</label>
+        <input id="nom" type="text" value={nom} onChange={(e) => setNom(e.target.value)} required
           className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-        <label className="block mb-2 text-sm font-medium text-gray-700">Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
+        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">Email</label>
+        <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
           className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-        <label className="block mb-2 text-sm font-medium text-gray-700">Téléphone (optionnel)</label>
-        <input type="tel" value={telephone} onChange={(e) => setTelephone(e.target.value)}
+        <label htmlFor="telephone" className="block mb-2 text-sm font-medium text-gray-700">Téléphone (optionnel)</label>
+        <input id="telephone" type="tel" value={telephone} onChange={(e) => setTelephone(e.target.value)}
           className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-        <label className="block mb-2 text-sm font-medium text-gray-700">Mot de passe</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required
+        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700">Mot de passe</label>
+        <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required
           className="w-full border border-gray-300 rounded px-3 py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
         <button type="submit" disabled={isSubmitting}

@@ -108,28 +108,28 @@ export default function AdminOffresPage() {
 
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block mb-1 text-sm font-medium text-gray-700">Entreprise</label>
-                <input type="text" required value={form.entreprise}
+                <label htmlFor="entreprise" className="block mb-1 text-sm font-medium text-gray-700">Entreprise</label>
+                <input id="entreprise" type="text" required value={form.entreprise}
                   onChange={(e) => setForm({ ...form, entreprise: e.target.value })}
                   className="w-full border border-gray-300 rounded px-3 py-2" />
               </div>
               <div>
-                <label className="block mb-1 text-sm font-medium text-gray-700">Titre</label>
-                <input type="text" required value={form.titre}
+                <label htmlFor="titre" className="block mb-1 text-sm font-medium text-gray-700">Titre</label>
+                <input id="titre" type="text" required value={form.titre}
                   onChange={(e) => setForm({ ...form, titre: e.target.value })}
                   className="w-full border border-gray-300 rounded px-3 py-2" />
               </div>
             </div>
 
-            <label className="block mb-1 text-sm font-medium text-gray-700">Description</label>
-            <textarea required value={form.description} rows={4}
+            <label htmlFor="description" className="block mb-1 text-sm font-medium text-gray-700">Description</label>
+            <textarea id="description" required value={form.description} rows={4}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               className="w-full border border-gray-300 rounded px-3 py-2 mb-4" />
 
             <div className="grid grid-cols-3 gap-4 mb-6">
               <div>
-                <label className="block mb-1 text-sm font-medium text-gray-700">Type</label>
-                <select value={form.type}
+                <label htmlFor="type" className="block mb-1 text-sm font-medium text-gray-700">Type</label>
+                <select id="type" value={form.type}
                   onChange={(e) => setForm({ ...form, type: e.target.value as OffreType })}
                   className="w-full border border-gray-300 rounded px-3 py-2">
                   <option value="presentiel">Présentiel</option>
@@ -138,8 +138,8 @@ export default function AdminOffresPage() {
                 </select>
               </div>
               <div>
-                <label className="block mb-1 text-sm font-medium text-gray-700">Durée (mois)</label>
-                <select value={form.duree}
+                <label htmlFor="duree" className="block mb-1 text-sm font-medium text-gray-700">Durée (mois)</label>
+                <select id="duree" value={form.duree}
                   onChange={(e) => setForm({ ...form, duree: Number(e.target.value) })}
                   className="w-full border border-gray-300 rounded px-3 py-2">
                   <option value={1}>1 mois</option>
@@ -148,8 +148,8 @@ export default function AdminOffresPage() {
                 </select>
               </div>
               <div>
-                <label className="block mb-1 text-sm font-medium text-gray-700">Ville</label>
-                <input type="text" required value={form.ville}
+                <label htmlFor="ville" className="block mb-1 text-sm font-medium text-gray-700">Ville</label>
+                <input id="ville" type="text" required value={form.ville}
                   onChange={(e) => setForm({ ...form, ville: e.target.value })}
                   className="w-full border border-gray-300 rounded px-3 py-2" />
               </div>

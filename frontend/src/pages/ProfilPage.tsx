@@ -70,21 +70,21 @@ export default function ProfilPage() {
               <div className="bg-blue-100 text-blue-700 px-4 py-2 rounded mb-4 text-sm">{saveMessage}</div>
             )}
 
-            <label className="block mb-2 text-sm font-medium text-gray-700">Prénom</label>
+            <label htmlFor="prenom" className="block mb-2 text-sm font-medium text-gray-700">Prénom</label>
             <input
-              type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)}
+              id="prenom" type="text" value={prenom} onChange={(e) => setPrenom(e.target.value)}
               className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
-            <label className="block mb-2 text-sm font-medium text-gray-700">Nom</label>
+            <label htmlFor="nom" className="block mb-2 text-sm font-medium text-gray-700">Nom</label>
             <input
-              type="text" value={nom} onChange={(e) => setNom(e.target.value)}
+              id="nom" type="text" value={nom} onChange={(e) => setNom(e.target.value)}
               className="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
-            <label className="block mb-2 text-sm font-medium text-gray-700">Téléphone</label>
+            <label htmlFor="telephone" className="block mb-2 text-sm font-medium text-gray-700">Téléphone</label>
             <input
-              type="tel" value={telephone} onChange={(e) => setTelephone(e.target.value)}
+              id="telephone" type="tel" value={telephone} onChange={(e) => setTelephone(e.target.value)}
               className="w-full border border-gray-300 rounded px-3 py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
@@ -108,7 +108,7 @@ export default function ProfilPage() {
                   Voir le fichier actuel
                 </a>
               )}
-              <input type="file" accept=".pdf,.doc,.docx" onChange={handleCvChange} disabled={isUploadingCv} className={fileInputClass} />
+              <input type="file" accept=".pdf,.doc,.docx" aria-label="CV" onChange={handleCvChange} disabled={isUploadingCv} className={fileInputClass} />
               {isUploadingCv && <p className="text-sm text-gray-500 mt-1">Envoi en cours...</p>}
             </div>
 
@@ -119,7 +119,7 @@ export default function ProfilPage() {
                   Voir le fichier actuel
                 </a>
               )}
-              <input type="file" accept=".pdf,.doc,.docx" onChange={handleLettreChange} disabled={isUploadingLettre} className={fileInputClass} />
+              <input type="file" accept=".pdf,.doc,.docx" aria-label="Lettre de motivation" onChange={handleLettreChange} disabled={isUploadingLettre} className={fileInputClass} />
               {isUploadingLettre && <p className="text-sm text-gray-500 mt-1">Envoi en cours...</p>}
             </div>
           </div>
