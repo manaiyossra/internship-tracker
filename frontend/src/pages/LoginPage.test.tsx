@@ -3,9 +3,9 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import LoginPage from './LoginPage';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
 
-vi.mock('../context/AuthContext');
+vi.mock('../context/useAuth');
 
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async (importOriginal) => {

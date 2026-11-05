@@ -5,11 +5,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import OffreDetailPage from './OffreDetailPage';
 import { getOffre } from '../api/offres';
 import { postuler } from '../api/candidatures';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
 
 vi.mock('../api/offres', () => ({ getOffre: vi.fn() }));
 vi.mock('../api/candidatures', () => ({ postuler: vi.fn() }));
-vi.mock('../context/AuthContext', () => ({ useAuth: vi.fn() }));
+vi.mock('../context/useAuth', () => ({ useAuth: vi.fn() }));
 vi.mock('react-router-dom', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-router-dom')>();
   return { ...actual, useParams: () => ({ id: 'offre1' }) };

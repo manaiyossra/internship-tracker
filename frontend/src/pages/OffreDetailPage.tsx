@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { isAxiosError } from 'axios';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
 import Navbar from '../components/Navbar';
 import { getOffre } from '../api/offres';
 import { postuler } from '../api/candidatures';

@@ -1,6 +1,6 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 import Navbar from '../components/Navbar';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
 import { updateMe, uploadCv, uploadLettreMotivation } from '../api/users';
 import { API_BASE_URL } from '../api/client';
 
