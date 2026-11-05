@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, vi } from 'vitest';
 import Navbar from './Navbar';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
 
-vi.mock('../context/AuthContext');
+vi.mock('../context/useAuth');
 
 describe('Navbar', () => {
   it('affiche le lien "Mes candidatures" pour un candidat, pas les liens admin', () => {

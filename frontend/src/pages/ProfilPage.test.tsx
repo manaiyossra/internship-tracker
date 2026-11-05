@@ -4,10 +4,10 @@ import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import ProfilPage from './ProfilPage';
 import { updateMe, uploadCv, uploadLettreMotivation } from '../api/users';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
 
 vi.mock('../api/users', () => ({ updateMe: vi.fn(), uploadCv: vi.fn(), uploadLettreMotivation: vi.fn() }));
-vi.mock('../context/AuthContext', () => ({ useAuth: vi.fn() }));
+vi.mock('../context/useAuth', () => ({ useAuth: vi.fn() }));
 
 const baseUser = { nom: 'Dupont', prenom: 'Jean', telephone: '12345678', role: 'candidat', email: 'jean@test.com' };
 
